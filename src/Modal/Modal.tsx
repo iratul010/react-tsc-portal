@@ -1,3 +1,4 @@
+ import  ReactDOM  from 'react-dom';
  import classes from './Modal.module.css';
 interface ModalProps{
     show:boolean;
@@ -6,7 +7,7 @@ interface ModalProps{
 const Modal = ({show,closeModal}:ModalProps) => {
  
      if(!show) return null;
-    return (
+    return ReactDOM.createPortal(
         <div className={classes.modal}>
             <div className={classes.overlay} onClick={closeModal}> </div>
             <div  className={classes.content}>
@@ -14,7 +15,7 @@ const Modal = ({show,closeModal}:ModalProps) => {
                 <button onClick={closeModal}>close</button>
             </div>
             
-        </div>
+        </div>,document.getElementById('portal')as HTMLElement
     );
 };
 
